@@ -15,4 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag stress:$(date +%s)
+      run: docker build . --file Dockerfile --tag ghcr.io/morganekmefjord/stress:$(date +%s)
+    - name: Push the Docker image
+      run: |
+        docker tag ghcr.io/morganekmefjord/stress:$(date +%s) ghcr.io/morganekmefjord/stress:latest
+        docker push ghcr.io/morganekmefjord/stress:latest
